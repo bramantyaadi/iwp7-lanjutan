@@ -1,9 +1,12 @@
 
 import axios from 'axios';
-import React, { useEffect, useReducer } from 'react';
+import React, { memo, useEffect, useMemo, useReducer, useState } from 'react';
 import { ListGroupItem, ListGroup, Badge } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import ComponentA from "./componen/ComponentA";
+
+// Minggu 8
+import ComponentSatu from './componen/ComponentSatu';
 import './App.css';
 
 // export const CounterContext = React.createContext();
@@ -58,6 +61,18 @@ const reducer = (state, action) => {
 function App() {
   // const [state, dispatch] = useReducer(reducer, nilaiawal);
   //Mulai Axios
+
+
+  // Minggu 8
+  const [countA , setcountA] = useState(0);
+  const incrementA = () =>{
+    setcountA(countA+1);
+  }
+  // ---- Minggu 8
+
+
+
+
   const [state, dispatch] = useReducer(reducer, stateAwal);
   useEffect(
     () => {
@@ -68,8 +83,7 @@ function App() {
         }).catch(err => {
           dispatch({ type: "SET_ERROR" });
         })
-    }, []
-  );
+    }, []);
   // const Listmarkup = <div>List markup</div>
 
   const Listmarkup = (
@@ -81,6 +95,13 @@ function App() {
 
     // </ul>
   )
+
+  // Minggu 8
+  const memoComponentSatu = useMemo(() => {
+    return <ComponentSatu/>
+  });
+  // Minggu 8
+  
   return (
     // <CounterContext.Provider value={{ counter1: state.counter1, dispatch }}>
     //   <div className="App">
@@ -90,7 +111,18 @@ function App() {
     // </CounterContext.Provider>
 
     <div className="App">
-      {state.loading ? "Loading" : state.error ? state.error : Listmarkup}
+      
+
+
+      {/* {state.loading ? "Loading" : state.error ? state.error : Listmarkup} */}
+
+
+      {/* IWP MINGGU 8 */}
+      App Js count A:
+      <p></p>
+        <button onClick={incrementA}>Increment A</button>
+      <p></p>
+      {memoComponentSatu}
     </div>
 
   );
