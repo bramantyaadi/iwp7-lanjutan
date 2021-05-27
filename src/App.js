@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Minggu 8
 import ComponentSatu from './componen/ComponentSatu';
+import ComponentDua from './componen/ComponentDua';
 import './App.css';
 
 // export const CounterContext = React.createContext();
@@ -65,7 +66,11 @@ function App() {
 
   // Minggu 8
   const [countA , setcountA] = useState(0);
+  const [countB , setcountB] = useState(0);
   const incrementA = () =>{
+    setcountA(countA+1);
+  }
+  const incrementB = () =>{
     setcountA(countA+1);
   }
   // ---- Minggu 8
@@ -98,7 +103,7 @@ function App() {
 
   // Minggu 8
   const memoComponentSatu = useMemo(() => {
-    return <ComponentSatu/>
+    return <ComponentSatu count={countA}/>
   });
   // Minggu 8
   
@@ -122,7 +127,11 @@ function App() {
       <p></p>
         <button onClick={incrementA}>Increment A</button>
       <p></p>
+      <button onClick={incrementB}>Increment B</button>
+      <p></p>
       {memoComponentSatu}
+
+      <ComponentDua/>
     </div>
 
   );
